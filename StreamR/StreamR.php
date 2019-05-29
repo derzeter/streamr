@@ -1,7 +1,7 @@
 <?php
 
 /* Class to post data to StreamR - derzeter */
-/* v 1.0 - 29/05/2019                       */
+/* v 1.1 - 29/05/2019                       */
 
 /* to be full , would need :
    - token expiration handling {done}
