@@ -1,4 +1,3 @@
-
 <?php 
 
 require("StreamR/StreamR.php");
@@ -28,10 +27,23 @@ $StreamR->Configuration($api_key,$stream_id);
 
 // Create a token with StreamR to be able to POST
 
-$StreamR->GetToken();
+try {
+	$StreamR->GetToken();
+} catch (Exception $e) {
+    echo 'Caught exception: ',  $e->getMessage(), "\n";
+    print_r($StreamR->LastError());
+}
+
 
 // Once you have the token, you can post.
 
-$StreamR->PostData($data);
+try {
+	$StreamR->PostData($data);
+} catch (Exception $e) {
+    echo 'Caught exception: ',  $e->getMessage(), "\n";
+    print_r($StreamR->LastError());
+}
+
+
 
 ?>

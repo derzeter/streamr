@@ -32,13 +32,8 @@ TODO
 
 Some easy things left to do :
 
-- token expiration handling
-- reusing same token if possible
 - errors handling for GetToken method
 - errors handling for Postdata method
-- curl retry in GetToken method
-- curl retry in Postdata method    
-- data sanitazion against whatever (Postdata method)
 
 Some harder things left to do :
 
