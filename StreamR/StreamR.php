@@ -70,7 +70,9 @@ private $token = Array();
                 curl_close($ch);
 
                 $this->token = json_decode($result,true);
-                print_r($this->token);
+
+		// Uncomment this line if you want to see whats replied
+                //print_r($this->token); 
 
         }
 
@@ -103,6 +105,10 @@ private $token = Array();
                 }
 
                 curl_close($ch);
+
+		// Uncomment this line if you want to see whats replied
+                //print_r($result); 
+
 
         }
 
