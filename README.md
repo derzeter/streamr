@@ -26,16 +26,10 @@ Usage
 -----
 You can run from command line : php post2streamr.php 
 
+WISHLIST
+--------
 
-TODO
-----
-
-Some easy things left to do :
-
-- errors handling for GetToken method
-- errors handling for Postdata method
-
-Some harder things left to do :
+If someone wants to contribute, you can do the following :
 
 - websocket method to post data
 - read data from a stream

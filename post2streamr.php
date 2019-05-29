@@ -12,7 +12,7 @@ Stream ID can be found in the details section of your stream.
 
 */
 
-$data = '{"date":"'.gmdate("Y-m-d\TH:i:s\Z").'","data":"TEST-DATA-REALLY-1"}';
+$data = '{"date":"'.gmdate("Y-m-d\TH:i:s\Z").'","data":"TEST-'.md5(rand(0,65535)).'"}';
 $StreamR = new StreamR;
 
 // Configure your stream using your api_key and stream_id
@@ -30,8 +30,9 @@ $StreamR->Configuration($api_key,$stream_id);
 try {
 	$StreamR->GetToken();
 } catch (Exception $e) {
-    echo 'Caught exception: ',  $e->getMessage(), "\n";
-    print_r($StreamR->LastError());
+	echo 'Caught exception: ',  $e->getMessage(), "\n";
+	print_r($StreamR->LastError());	
+	die();
 }
 
 
@@ -40,8 +41,9 @@ try {
 try {
 	$StreamR->PostData($data);
 } catch (Exception $e) {
-    echo 'Caught exception: ',  $e->getMessage(), "\n";
-    print_r($StreamR->LastError());
+	echo 'Caught exception: ',  $e->getMessage(), "\n";
+	print_r($StreamR->LastError());
+	die();
 }
 
 

@@ -9,8 +9,8 @@
    - curl retry in GetToken method {done}
    - curl retry in Postdata method {done}
    - data sanitazion against whatever (Postdata method) - let's check it is a json {done}
-   - errors handling for GetToken method (from API)
-   - errors handling for Postdata method (from API)
+   - errors handling for GetToken method (from API) {done}
+   - errors handling for Postdata method (from API) {done}
 Otherwise, works pretty fine as of June 2019
 */
 
@@ -91,7 +91,16 @@ private $curl_limit = 5; // Retry limit for curl connection
                 $this->token = json_decode($result,true);
 
 		// Uncomment this line if you want to see whats replied
-                // print_r($this->token); 
+                //print_r($this->token); 
+
+		if(isset($this->token["code"])) {
+			$this->error["error"] = "API error";
+			$this->error["call"] = "GetToken()";
+			$this->error["actual"] = time();
+                        $this->error["details"] = $this->token;
+			throw new Exception('API error.');
+		}
+
 
         }
 
@@ -99,6 +108,7 @@ private $curl_limit = 5; // Retry limit for curl connection
         function Postdata($data) {
 
 		$retries = 0;
+		$reply = "";
 
 		// Checking json
 
@@ -159,8 +169,19 @@ private $curl_limit = 5; // Retry limit for curl connection
 
 		} while($retries>0); 
 
+		$reply = json_decode($result,true);
+
 		// Uncomment this line if you want to see whats replied
-                //print_r($result); 
+		//print_r($reply);
+
+		if(isset($reply["error"])) {
+			$this->error["error"] = "API error";
+			$this->error["call"] = "Postdata()";
+			$this->error["actual"] = time();
+                        $this->error["details"] = $reply;
+			throw new Exception('API error.');
+		}
+
 
         }
 
